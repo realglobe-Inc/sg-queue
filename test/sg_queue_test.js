@@ -37,6 +37,23 @@ describe('sg-queue', function () {
       assert.deepEqual(results, [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ])
     })
   }))
+
+  it('With error', () => co(function * () {
+    let queue = new SGQueue()
+    try {
+      for (let i = 0; i < 2; i++) {
+        yield queue.push(
+          () => new Promise((resolve, reject) => {
+            setTimeout(() => {
+              reject(new Error('hoge'))
+            }, 10)
+          })
+        )
+      }
+    } catch (e) {
+      assert.ok(e)
+    }
+  }))
 })
 
 /* global describe, before, after, it */
