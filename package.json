@@ -6,6 +6,7 @@
   "browser": "shim/browser",
   "scripts": {
     "test": "./ci/test.js",
+    "test:browser": "karma start",
     "prepublish": "./ci/build.js && ./ci/browser.js"
   },
   "repository": "realglobe-Inc/sg-queue",
@@ -35,8 +36,9 @@
     "ape-tasking": "^4.0.8",
     "ape-tmpl": "^5.0.15",
     "ape-updating": "^4.0.5",
-    "coz": "^6.0.17",
-    "injectmock": "^2.0.0"
+    "coz": "^6.0.16",
+    "injectmock": "^2.0.0",
+    "sg-karma": "^1.0.4"
   },
   "engines": {
     "node": ">=6",
