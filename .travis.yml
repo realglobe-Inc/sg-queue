@@ -4,9 +4,9 @@ node_js:
 addons:
   firefox: "43.0"
 before_install:
-- echo "registry = https://realglobe.artifactoryonline.com/realglobe/api/npm/npm-virtual" > $HOME/.npmrc
-- curl -u${NPM_USER}:${NPM_PASSWORD} "https://realglobe.artifactoryonline.com/realglobe/api/npm/auth" >> $HOME/.npmrc
-- cat $HOME/.npmrc
+- npm i npm-cli-login -g
+- echo "NPM_USER=${NPM_USER}"
+- npm-cli-login -u "${NPM_USER}" -p "${NPM_PASSWORD}" -e "${NPM_EMAIL}"
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 install:
@@ -14,9 +14,10 @@ install:
 script:
 - ./ci/build.js
 - ./ci/test.js
+- ./ci/shim.js
 - npm run test:browser
-- ./ci/cover.js
-- ./ci/report.js
 after_success:
 - ./ci/travis/publish.js
 - ./ci/travis/push_sugos.js
+env:
+  secure: "R5a2ZPZ3CrEFLH82l3F/NzforDSVLyEX+At4tJsDViT/bQ0EBriDCKlXBtDx17GU9TpfkEXHvGv4PRaAbhHftGyz1ZgcNvKWYhMXPPYRdMFoRKoCTXzAzeX6KBHl5uaG37OUNfKQJRIPETUc1wLSaeukx/lc7I0vTDLCb6WwMR5Wz/pD25scJUFlHD20c12xo9H/8W0GoYHzXIflGI99nJhkeSlGhbTbC/IwyANKBrHbSVUdJEkv1cA/LPFRo65F06inDxtEOqFzpWuHEajURdXRTr2miLvDOOgh591Jhu5ZtbneVaUnTsiAGAazcap3ujDZGlgTus9CwqVshtespCVaKoPRGOTxo/w7U9hk1KdeGSXAR5Jcz6HuJMJDbSfmA+waGUs9l8Bkv/1NCBByCrXKhcUJkLzzyRsoFjxlNAExTcSZBOeTTKmgPNupIgBdBW7pvMxqU3rn3xrEkTjx2jRDi4+spM72rc6h4hiQ8YvcupJM8RR1E69Ktq3KGTtcsigiyHVkwB9sxtL3Gn2+Np/JGoFuJXnMgR/M/9fMYVjejTo77zc6d9NvG9j5CtgKIE1xPw5uYy4mIo7COVcmahBvktZGFeFjRSkCfdO4/y7SwD2yJz7cSv4hwVwsOZrg5bZY5BaeSjXfxzVfvC7Jg4qiJ7CC+b48BcZXZ9bEDBs="

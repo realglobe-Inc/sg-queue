@@ -5,9 +5,9 @@
   "main": "lib",
   "browser": "shim/browser",
   "scripts": {
-    "test": "./ci/test.js",
+    "test": "node ./ci/test.js",
     "test:browser": "karma start",
-    "prepublish": "./ci/build.js && ./ci/browser.js"
+    "prepare": "node ./ci/build.js && node ./ci/shim.js"
   },
   "repository": "realglobe-Inc/sg-queue",
   "keywords": [
@@ -18,7 +18,7 @@
     "email": "okunishitaka.com@gmail.com",
     "url": "http://okunishitaka.com"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/realglobe-Inc/sg-queue/issues"
   },
@@ -27,24 +27,21 @@
     "co": "^4.6.0"
   },
   "devDependencies": {
-    "ababel": "^1.1.2",
-    "ababel-es2015": "^1.0.6",
-    "amocha": "^1.0.14",
+    "ababel": "^2.0.1",
+    "ababel-es2015": "^2.0.1",
+    "amocha": "^2.0.0",
     "ape-formatting": "^1.0.2",
     "ape-releasing": "^4.0.4",
-    "ape-reporting": "^3.0.2",
     "ape-tasking": "^4.0.8",
     "ape-tmpl": "^5.0.15",
     "ape-updating": "^4.0.5",
     "coz": "^6.0.16",
     "injectmock": "^2.0.0",
-    "sg-karma": "^1.0.4"
+    "sg-karma": "^1.0.4",
+    "sugos-travis": "^2.0.7"
   },
   "engines": {
     "node": ">=6",
-    "npm": ">=3"
-  },
-  "publishConfig": {
-    "registry": "https://realglobe.artifactoryonline.com/realglobe/api/npm/npm-local"
+    "npm": ">=4"
   }
 }
